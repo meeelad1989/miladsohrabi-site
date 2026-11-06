@@ -592,3 +592,9 @@
 .recommendations .rec-rel {
   display: block;
 }
+
+/* Keep the "Milad Sohrabi" logo on a single line (template sets width:90px) */
+.navbar .logo {
+  width: auto;
+  white-space: nowrap;
+}
