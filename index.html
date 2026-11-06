@@ -364,9 +364,24 @@
     				</div>
     			</div>
 
+    			<div class="scrolly">
+
+    				<!-- Sticky storytelling panel (filled in by js/scrolly.js) -->
+    				<aside class="scrolly-panel" aria-hidden="true">
+    					<div class="scrolly-card">
+    						<span class="sp-chapter">Chapter 6</span>
+    						<div class="sp-years">2022 &ndash; Now</div>
+    						<h5 class="sp-company">HUMAN Security</h5>
+    						<p class="sp-title">Closing deals, protecting customers</p>
+    						<span class="sp-stat"><i class="fas fa-star"></i> <span class="sp-stat-text">2023 President's Club</span></span>
+    						<div class="sp-progress"><span class="sp-progress-fill"></span></div>
+    						<ol class="sp-rail"></ol>
+    					</div>
+    				</aside>
+
     			<div class="timeline">
 
-    				<div class="tl-item">
+    				<div data-years="2022 &ndash; Now" data-company="HUMAN Security" data-chapter="Chapter 6" data-title="Closing deals, protecting customers" data-stat="2023 President's Club" class="tl-item">
     					<div class="tl-head">
     						<h5>HUMAN Security</h5>
     						<span class="tl-date">Aug 2022 &ndash; Present</span>
@@ -379,7 +394,7 @@
     					</ul>
     				</div>
 
-    				<div class="tl-item">
+    				<div data-years="2018 &ndash; 2022" data-company="PerimeterX" data-chapter="Chapter 5" data-title="From customer success to sales engineering" data-stat="4 roles in 4 years" class="tl-item">
     					<div class="tl-head">
     						<h5>PerimeterX</h5>
     						<span class="tl-date">2018 &ndash; Aug 2022 &middot; 4 years</span>
@@ -406,7 +421,7 @@
     					</ul>
     				</div>
 
-    				<div class="tl-item">
+    				<div data-years="2017 &ndash; 2018" data-company="WhiteHat Security" data-chapter="Chapter 4" data-title="Stepping into cyber security" data-stat="Application security" class="tl-item">
     					<div class="tl-head">
     						<h5>WhiteHat Security</h5>
     						<span class="tl-date">2017 &ndash; 2018</span>
@@ -419,7 +434,7 @@
     					</ul>
     				</div>
 
-    				<div class="tl-item">
+    				<div data-years="2015 &ndash; 2017" data-company="Demandbase" data-chapter="Chapter 3" data-title="Data, consulting &amp; B2B marketing" data-stat="3 roles in 2 years" class="tl-item">
     					<div class="tl-head">
     						<h5>Demandbase</h5>
     						<span class="tl-date">2015 &ndash; 2017 &middot; 2 years</span>
@@ -433,7 +448,7 @@
     					</ul>
     				</div>
 
-    				<div class="tl-item">
+    				<div data-years="2013 &ndash; 2015" data-company="Gainsight" data-chapter="Chapter 2" data-title="Where customer success began" data-stat="Onboarding &amp; implementation" class="tl-item">
     					<div class="tl-head">
     						<h5>Gainsight</h5>
     						<span class="tl-date">2013 &ndash; 2015</span>
@@ -446,7 +461,7 @@
     					</ul>
     				</div>
 
-    				<div class="tl-item tl-compact">
+    				<div data-years="2002 &ndash; 2012" data-company="Early Career" data-chapter="Chapter 1" data-title="Learning to serve customers" data-stat="Retail, BD &amp; internships" class="tl-item tl-compact">
     					<div class="tl-head">
     						<h5>Earlier Experience</h5>
     						<span class="tl-date">2002 &ndash; 2012</span>
@@ -458,6 +473,7 @@
     					</ul>
     				</div>
 
+    			</div>
     			</div>
 
     			<div class="community">
@@ -577,6 +593,7 @@
 
       	<!-- custom scripts -->
         <script src="js/scripts.js"></script>
+        <script src="js/scrolly.js"></script>
 
     </body>
 </html>

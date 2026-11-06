@@ -220,3 +220,231 @@
 .services {
   overflow: hidden;
 }
+
+/* =====================================================
+   Experience scrollytelling (js/scrolly.js)
+   ===================================================== */
+.experience .scrolly {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.experience .scrolly .timeline {
+  max-width: none;
+  margin: 0;
+}
+
+/* Panel is only shown once JS has wired it up */
+.experience .scrolly-panel {
+  display: none;
+}
+.experience .scrolly-on .scrolly-panel {
+  display: block;
+}
+
+@media screen and (min-width: 992px) {
+  .experience .scrolly-on {
+    display: grid;
+    grid-template-columns: 290px minmax(0, 1fr);
+    gap: 50px;
+    align-items: start;
+  }
+  .experience .scrolly-panel {
+    position: sticky;
+    top: 110px;
+  }
+}
+
+.experience .scrolly-card {
+  padding: 28px 26px;
+  background: #181818;
+  border-left: 3px solid #C49B66;
+  border-radius: 4px;
+}
+.experience .scrolly-card > * {
+  transition: opacity .18s ease, transform .18s ease;
+}
+.experience .scrolly-card.is-swapping .sp-chapter,
+.experience .scrolly-card.is-swapping .sp-years,
+.experience .scrolly-card.is-swapping .sp-company,
+.experience .scrolly-card.is-swapping .sp-title,
+.experience .scrolly-card.is-swapping .sp-stat {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.experience .sp-chapter {
+  display: block;
+  color: #C49B66;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.experience .sp-years {
+  margin: 10px 0 6px;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #fff;
+}
+.experience .sp-company {
+  margin: 0 0 8px;
+  font-size: 20px;
+  color: #eee;
+}
+.experience .sp-title {
+  margin: 0 0 14px;
+  font-size: 15px;
+  color: #a3a3a3;
+}
+.experience .sp-stat {
+  display: inline-block;
+  padding: 5px 12px;
+  border: 1px solid rgba(196, 155, 102, .5);
+  border-radius: 20px;
+  font-size: 13px;
+  color: #eee;
+}
+.experience .sp-stat i {
+  color: #C49B66;
+  margin-right: 4px;
+}
+.experience .sp-progress {
+  position: relative;
+  height: 3px;
+  margin: 22px 0 18px;
+  background: #2a2a2a;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.experience .sp-progress-fill {
+  position: absolute;
+  inset: 0;
+  background: #C49B66;
+  transform-origin: left center;
+  transform: scaleX(var(--p, 0));
+}
+.experience .sp-rail {
+  margin: 0;
+  padding: 0;
+}
+.experience .sp-rail li {
+  margin: 0;
+}
+.experience .sp-rail button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 6px 0;
+  background: none;
+  border: 0;
+  color: #777;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+  transition: color .2s ease;
+}
+.experience .sp-rail button:hover,
+.experience .sp-rail button:focus-visible {
+  color: #eee;
+}
+.experience .sp-rail .dot {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid #555;
+  transition: background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.experience .sp-rail li.is-past .dot {
+  border-color: #C49B66;
+}
+.experience .sp-rail li.is-active button {
+  color: #fff;
+  font-weight: 600;
+}
+.experience .sp-rail li.is-active .dot {
+  background: #C49B66;
+  border-color: #C49B66;
+  transform: scale(1.3);
+}
+
+/* Role cards: fade/slide in, then dim when not the focus */
+.experience .scrolly-on .tl-item {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .6s ease, transform .6s ease, box-shadow .4s ease;
+}
+.experience .scrolly-on .tl-item.is-in {
+  opacity: .5;
+  transform: none;
+}
+.experience .scrolly-on .tl-item.is-in.is-active {
+  opacity: 1;
+  box-shadow: inset 3px 0 0 #C49B66;
+}
+.experience .scrolly-on .tl-item:before {
+  transition: background .3s ease, box-shadow .3s ease;
+}
+.experience .scrolly-on .tl-item.is-active:before {
+  background: #C49B66;
+  box-shadow: 0 0 0 6px rgba(196, 155, 102, .2);
+}
+.experience .scrolly-on .tl-item:first-child:not(.is-active):before {
+  background: #131414;
+}
+
+/* Reduced motion: no animation, everything readable */
+.experience .scrolly-reduced .tl-item,
+.experience .scrolly-reduced .tl-item.is-in {
+  opacity: 1;
+  transform: none;
+  transition: none;
+}
+.experience .scrolly-reduced .scrolly-card > * {
+  transition: none;
+}
+
+/* Tablet & phone: panel becomes a compact sticky bar under the navbar */
+@media screen and (max-width: 991px) {
+  .experience .scrolly-panel {
+    position: sticky;
+    top: var(--nav-h, 70px);
+    z-index: 5;
+    margin: 0 -15px 30px;
+  }
+  .experience .scrolly-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: baseline;
+    column-gap: 14px;
+    padding: 12px 18px 0;
+    border-left: 0;
+    border-radius: 0;
+    background: rgba(24, 24, 24, .96);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .35);
+  }
+  .experience .sp-chapter,
+  .experience .sp-title,
+  .experience .sp-stat,
+  .experience .sp-rail {
+    display: none;
+  }
+  .experience .sp-years {
+    margin: 0;
+    font-size: 18px;
+  }
+  .experience .sp-company {
+    margin: 0;
+    font-size: 15px;
+    color: #C49B66;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .experience .sp-progress {
+    grid-column: 1 / -1;
+    margin: 10px -18px 0;
+    border-radius: 0;
+  }
+}
