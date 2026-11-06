@@ -91,6 +91,20 @@ $(function() {
         smartSpeed:500
     });
 
+    // Recommendations owlCarousel
+    $('.recommendations .owl-carousel').owlCarousel({
+        items:1,
+        loop:true,
+        margin: 15,
+        nav:true,
+        navText:['<i class="fas fa-chevron-left"></i>','<i class="fas fa-chevron-right"></i>'],
+        dots:true,
+        autoplay:true,
+        autoplayHoverPause:true,
+        autoplayTimeout:7000,
+        smartSpeed:600
+    });
+
     // Blog owlCarousel
     $('.blog .owl-carousel').owlCarousel({
         loop:true,

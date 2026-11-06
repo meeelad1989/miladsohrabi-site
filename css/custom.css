@@ -477,3 +477,87 @@
     font-size: clamp(18px, 1.95vw, 32px);
   }
 }
+
+/* =====================================================
+   Recommendations carousel
+   ===================================================== */
+.recommendations {
+  background-attachment: fixed;
+}
+.recommendations .section-head .icon {
+  font-size: 40px;
+  color: #C49B66;
+  margin-bottom: 15px;
+}
+.recommendations .ritem {
+  text-align: center;
+  padding: 10px 20px 0;
+}
+.recommendations .ritem .quote {
+  font-size: 18px;
+  line-height: 1.7;
+  color: #e6e6e6;
+  font-style: italic;
+  max-width: 820px;
+  margin: 0 auto 26px;
+}
+.recommendations .rec-by h5 {
+  font-size: 18px;
+  color: #fff;
+  margin: 0 0 4px;
+}
+.recommendations .rec-by h6 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #C49B66;
+  margin: 0 0 4px;
+}
+.recommendations .rec-rel {
+  font-size: 13px;
+  color: #9aa0a6;
+}
+
+/* Carousel nav + dots */
+.recommendations .owl-nav {
+  margin-top: 10px;
+}
+.recommendations .owl-nav button.owl-prev,
+.recommendations .owl-nav button.owl-next {
+  width: 42px;
+  height: 42px;
+  margin: 0 6px;
+  border: 1px solid rgba(255,255,255,.25) !important;
+  border-radius: 50%;
+  color: #eee !important;
+  background: rgba(0,0,0,.25) !important;
+  font-size: 15px;
+  transition: background .3s ease, border-color .3s ease, color .3s ease;
+}
+.recommendations .owl-nav button.owl-prev:hover,
+.recommendations .owl-nav button.owl-next:hover {
+  background: #C49B66 !important;
+  border-color: #C49B66 !important;
+  color: #1a1205 !important;
+}
+.recommendations .owl-dots {
+  margin-top: 18px;
+  text-align: center;
+}
+.recommendations .owl-dots .owl-dot span {
+  width: 9px;
+  height: 9px;
+  margin: 4px;
+  background: rgba(255,255,255,.3);
+  border-radius: 50%;
+  display: inline-block;
+  transition: background .3s ease, transform .3s ease;
+}
+.recommendations .owl-dots .owl-dot.active span {
+  background: #C49B66;
+  transform: scale(1.25);
+}
+
+@media screen and (max-width: 767px) {
+  .recommendations { background-attachment: scroll; }
+  .recommendations .ritem .quote { font-size: 16px; }
+}
