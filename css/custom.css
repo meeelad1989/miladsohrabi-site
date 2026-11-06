@@ -563,21 +563,6 @@
 }
 
 /* Recommendation headshots + company label */
-.recommendations .rec-photo {
-  width: 84px;
-  height: 84px;
-  margin: 0 auto 20px;
-  border-radius: 50%;
-  padding: 3px;
-  background: #131414;
-  box-shadow: 0 0 0 2px #C49B66;
-}
-.recommendations .rec-photo img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  display: block;
-}
 .recommendations .rec-co {
   display: inline-block;
   margin: 10px 0 6px;
@@ -597,4 +582,22 @@
 .navbar .logo {
   width: auto;
   white-space: nowrap;
+}
+
+/* Recommendation headshots (small, fixed size on all widths) */
+.recommendations .rec-photo {
+  width: 76px;
+  height: 76px;
+  max-width: 76px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  padding: 3px;
+  background: #131414;
+  box-shadow: 0 0 0 2px #C49B66;
+}
+.recommendations .rec-photo img {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: block;
 }
