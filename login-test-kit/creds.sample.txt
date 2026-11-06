@@ -1,0 +1,10 @@
+# Dummy credentials for testing your own endpoint only. Not real accounts.
+# Format: username:password  (one per line, # comments ignored)
+test@example.com:correct-horse
+test@example.com:wrong-password-1
+admin@example.com:password123
+user1@example.com:letmein
+user2@example.com:123456
+jdoe@example.com:qwerty
+alice@example.com:summer2024
+bob@example.com:changeme

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Login — Test Harness</title>
+<style>
+  :root {
+    --bg: #131414; --card: #1c1d1f; --fg: #eee; --muted: #9aa0a6;
+    --accent: #C49B66; --line: #2c2d30; --ok: #3fb950; --err: #f85149;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: var(--bg); color: var(--fg); padding: 24px;
+  }
+  .wrap { width: 100%; max-width: 760px; display: grid; gap: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 10px; padding: 26px;
+  }
+  h1 { margin: 0 0 4px; font-size: 22px; }
+  .sub { margin: 0 0 22px; color: var(--muted); font-size: 14px; }
+  label { display: block; font-size: 13px; color: var(--muted); margin: 14px 0 6px; }
+  input {
+    width: 100%; padding: 11px 13px; font-size: 15px;
+    background: #111; color: var(--fg);
+    border: 1px solid var(--line); border-radius: 7px;
+  }
+  input:focus { outline: none; border-color: var(--accent); }
+  button {
+    margin-top: 20px; width: 100%; padding: 12px; font-size: 15px; font-weight: 600;
+    background: var(--accent); color: #1a1205; border: 0; border-radius: 7px; cursor: pointer;
+  }
+  button:disabled { opacity: .6; cursor: default; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .endpoint { font-size: 13px; }
+  .endpoint input { font-family: ui-monospace, monospace; font-size: 13px; }
+  .note {
+    font-size: 12px; color: var(--muted); border-top: 1px solid var(--line);
+    margin-top: 20px; padding-top: 14px; line-height: 1.5;
+  }
+  .result { font-family: ui-monospace, monospace; font-size: 13px; white-space: pre-wrap;
+    word-break: break-word; }
+  .result .status { font-weight: 700; }
+  .result .status.ok { color: var(--ok); }
+  .result .status.bad { color: var(--err); }
+  .result .status.chal { color: var(--accent); }
+  .hidden { display: none; }
+  @media (max-width: 560px) { .row { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <form class="card" id="login-form" autocomplete="off">
+    <h1>Sign in</h1>
+    <p class="sub">Account login</p>
+
+    <label for="username">Email or username</label>
+    <input id="username" name="username" type="text" autocomplete="username" required>
+
+    <label for="password">Password</label>
+    <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+    <button type="submit" id="submit-btn">Sign in</button>
+
+    <div class="endpoint">
+      <label for="endpoint">POST endpoint (test config)</label>
+      <input id="endpoint" name="endpoint" type="text" value="http://localhost:8787/api/login">
+    </div>
+
+    <p class="note">
+      Test harness for validating login/bot protection on systems you own or are
+      explicitly authorized to test. The form sends a JSON POST and prints the raw
+      response below, so you can see when a request is challenged rather than logged in.
+    </p>
+  </form>
+
+  <div class="card result hidden" id="result-card">
+    <div id="result"></div>
+  </div>
+
+</div>
+
+<script>
+(function () {
+  var form = document.getElementById('login-form');
+  var btn = document.getElementById('submit-btn');
+  var card = document.getElementById('result-card');
+  var out = document.getElementById('result');
+
+  function classify(status, bodyText) {
+    // Human Security / PerimeterX block responses: 403 with a px-captcha / "Press & Hold" body.
+    if (/px-captcha|_pxCaptcha|Press\s*&?\s*Hold|access to this page has been denied/i.test(bodyText)) {
+      return { cls: 'chal', label: 'CHALLENGED (bot protection triggered)' };
+    }
+    if (status >= 200 && status < 300) return { cls: 'ok', label: 'OK' };
+    return { cls: 'bad', label: 'REJECTED' };
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var endpoint = document.getElementById('endpoint').value.trim();
+    var payload = {
+      username: document.getElementById('username').value,
+      password: document.getElementById('password').value
+    };
+
+    btn.disabled = true;
+    btn.textContent = 'Signing in…';
+    card.classList.add('hidden');
+
+    var started = performance.now();
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload),
+      credentials: 'include'
+    }).then(function (res) {
+      return res.text().then(function (text) {
+        var ms = Math.round(performance.now() - started);
+        var verdict = classify(res.status, text);
+        var hdrs = [];
+        res.headers.forEach(function (v, k) { hdrs.push('  ' + k + ': ' + v); });
+        out.innerHTML =
+          '<span class="status ' + verdict.cls + '">' + res.status + ' ' + res.statusText +
+          ' — ' + verdict.label + '</span>  (' + ms + ' ms)\n\n' +
+          'Response headers:\n' + (hdrs.join('\n') || '  (none readable)') + '\n\n' +
+          'Body (first 1200 chars):\n' + text.slice(0, 1200);
+        card.classList.remove('hidden');
+      });
+    }).catch(function (err) {
+      out.innerHTML = '<span class="status bad">NETWORK ERROR</span>\n\n' + err.message +
+        '\n\n(CORS or a blocked connection can also look like this — check the browser console.)';
+      card.classList.remove('hidden');
+    }).finally(function () {
+      btn.disabled = false;
+      btn.textContent = 'Sign in';
+    });
+  });
+})();
+</script>
+</body>
+</html>

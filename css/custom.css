@@ -448,3 +448,24 @@
     border-radius: 0;
   }
 }
+
+/* "Login" nav item styled as a small button (links to the test login page) */
+.navbar .navbar-nav .nav-login {
+  border: 1px solid #C49B66;
+  border-radius: 20px;
+  padding: 5px 16px;
+  margin: 10px 5px 10px 12px;
+  color: #C49B66 !important;
+  transition: background .3s ease, color .3s ease;
+}
+.navbar .navbar-nav .nav-login:hover,
+.navbar .navbar-nav .nav-login:focus {
+  background: #C49B66;
+  color: #1a1205 !important;
+}
+@media screen and (max-width: 991px) {
+  .navbar .navbar-nav .nav-login {
+    display: inline-block;
+    margin: 8px 0;
+  }
+}
