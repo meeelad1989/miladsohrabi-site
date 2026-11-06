@@ -469,3 +469,11 @@
     margin: 8px 0;
   }
 }
+
+/* Keep the About heading on a single line on desktop; wraps normally on phones */
+@media screen and (min-width: 992px) {
+  .hero1 .content .title.title-left {
+    white-space: nowrap;
+    font-size: clamp(18px, 1.95vw, 32px);
+  }
+}
