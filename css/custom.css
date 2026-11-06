@@ -1,0 +1,222 @@
+/* Site-specific additions on top of the template theme (accent: #C49B66) */
+
+/* Header award badge */
+.header .header-badge {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 8px 18px;
+  border: 1px solid #C49B66;
+  border-radius: 30px;
+  color: #eee;
+  font-size: 14px;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0.35);
+}
+.header .header-badge i {
+  color: #C49B66;
+  margin-right: 6px;
+}
+
+/* About copy spacing */
+.hero1 .content p + p {
+  margin-top: 15px;
+}
+.hero1 .content .social-icon {
+  margin-top: 25px;
+}
+
+/* Core strengths tags (replaces self-rated % bars) */
+.resume .skills .skill-group {
+  margin-bottom: 18px;
+}
+.resume .skills .skill-group h6 {
+  color: #C49B66;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.resume .skills .tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 0;
+}
+.resume .skills .tags li {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  font-size: 13px;
+  color: #ddd;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Counters: keep long labels readable */
+.numbers .item p {
+  line-height: 1.4;
+}
+
+/* Experience timeline */
+.experience .timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding-left: 32px;
+  border-left: 2px solid #222;
+}
+.experience .tl-item {
+  position: relative;
+  margin-bottom: 45px;
+  padding: 25px 30px;
+  background: #181818;
+  border-radius: 4px;
+}
+.experience .tl-item:before {
+  content: '';
+  position: absolute;
+  left: -42px;
+  top: 30px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #131414;
+  border: 3px solid #C49B66;
+}
+.experience .tl-item:first-child:before {
+  background: #C49B66;
+}
+.experience .tl-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 20px;
+  margin-bottom: 10px;
+}
+.experience .tl-head h5 {
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0;
+}
+.experience .tl-date {
+  color: #C49B66;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.experience .tl-item h6 {
+  color: #ddd;
+  font-size: 16px;
+  margin: 14px 0 6px;
+}
+.experience .tl-item ul {
+  margin: 0;
+  padding: 0;
+}
+.experience .tl-item li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 7px;
+  font-size: 15px;
+  color: #a3a3a3;
+  line-height: 1.6;
+}
+.experience .tl-item li:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #C49B66;
+}
+.experience .tl-item li strong {
+  color: #eee;
+}
+.experience .tl-compact {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.experience .community {
+  max-width: 900px;
+  margin: 10px auto 0;
+}
+.experience .community p span {
+  color: #C49B66;
+}
+
+@media screen and (max-width: 767px) {
+  .experience .timeline {
+    padding-left: 20px;
+  }
+  .experience .tl-item {
+    padding: 20px 18px;
+  }
+  .experience .tl-item:before {
+    left: -30px;
+  }
+}
+
+/* Contact call-to-action (replaces non-functional PHP form) */
+.contact .contact-cta {
+  max-width: 720px;
+  margin: 0 auto 60px;
+}
+.contact .contact-cta p {
+  color: #ccc;
+  font-size: 17px;
+  margin-bottom: 30px;
+}
+.contact .contact-cta .buton {
+  margin: 8px;
+}
+.contact .info a {
+  color: inherit;
+}
+.contact .info a:hover {
+  color: #C49B66;
+}
+
+/* Fixes for theme rules that clash with the new content */
+.resume .skills .tags li,
+.resume .skills .tags li:last-child {
+  margin-bottom: 0;
+}
+.hero1 .content p span {
+  display: inline;
+  white-space: normal;
+  color: #eee;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 767px) {
+  .header .caption h2 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  .header .header-badge {
+    max-width: calc(100% - 32px);
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: 1.5;
+  }
+  .header .caption h1.cd-headline {
+    font-size: 26px;
+  }
+  .header .cd-headline .blc {
+    display: block;
+  }
+  .contact .info .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+/* Hidden rotating headline words are absolutely positioned; keep them from widening the page */
+.header {
+  overflow: hidden;
+}
+.services {
+  overflow: hidden;
+}
